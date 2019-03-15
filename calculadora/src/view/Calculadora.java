@@ -338,7 +338,7 @@ public class Calculadora extends JFrame{ //extends serve pra acessar coisas de o
 			else if (sinal.equals("raiz")) {
 				result.setText(mat.raiz(valor1)+"");
 			}
-			else if (sinal.equals("facao")) {
+			else if (sinal.equals("fracao")) {
 				result.setText(mat.fracao(valor1)+"");
 			}
 		}
