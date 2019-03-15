@@ -23,4 +23,19 @@ public class Funcoes {
 		 resultado =a/b;
 		 return resultado;
 	 }
+	 public double porcento (double a,double b) {
+		  double resultado;
+		  resultado = (a*b)/100;
+		  return resultado;
+	 }
+	 public double raiz (double a) {
+		 double resultado;
+		 resultado= Math.sqrt(a);
+		 return resultado;
+	 }
+	 public double fracao (double a) {
+		 double resultado;
+		 resultado=1/a;
+		 return resultado;
+	 }
 }

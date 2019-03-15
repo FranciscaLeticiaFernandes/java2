@@ -22,8 +22,8 @@ public class Calculadora extends JFrame{ //extends serve pra acessar coisas de o
 	JButton btnMC = new JButton("MC");
 	JButton btnMR = new JButton("MR");
 	JButton btnMS = new JButton("MS");
-	JButton btnP = new JButton("M+");
-	JButton btnM = new JButton("M-");
+	JButton btnM = new JButton("M+");
+	JButton btnMenos = new JButton("M-");
 	JButton btnBackspace = new JButton("<-");
 	JButton btnCE = new JButton("CE");
 	JButton btnC = new JButton("C");
@@ -84,8 +84,8 @@ public class Calculadora extends JFrame{ //extends serve pra acessar coisas de o
 		paine.add(btnMS);
 		btnMS.setBounds(120,100,52,30);
 		
-		paine.add(btnP);
-		btnP.setBounds(175,100,52,30);
+		paine.add(btnMenos);
+		btnMenos.setBounds(175,100,52,30);
 		
 		paine.add(btnM);
 		btnM.setBounds(230,100,52,30);
@@ -98,12 +98,28 @@ public class Calculadora extends JFrame{ //extends serve pra acessar coisas de o
 		
 		paine.add(btnC);
 		btnC.setBounds(120,140,52,30);
+		btnC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor1=0;
+				valor2=0;
+				sinal=null;
+				result.setText("0");
+			}
+		});
 		
 		paine.add(btnMaisOuMenos);
 		btnMaisOuMenos.setBounds(175,140,52,30);
+		//btnMaisOuMenos.addActionListener(new ActionLiestener());
 		
 		paine.add(btnRQuad);
 		btnRQuad.setBounds(230,140,52,30);
+		btnRQuad.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor1=Double.parseDouble(result.getText());
+				sinal="raiz";
+				result.setText("0");
+			}
+		});
 		
 		paine.add(btnSete);
 		btnSete.setBounds(10,180,52,30);
@@ -155,6 +171,15 @@ public class Calculadora extends JFrame{ //extends serve pra acessar coisas de o
 		
 		paine.add(btnPorcento);
 		btnPorcento.setBounds(230,180,52,30);
+		btnPorcento.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor1=  Double.parseDouble(result.getText());
+				sinal="porcento";
+				result.setText("0");
+			}
+		});
+		
+		
 		
 		paine.add(btnQuatro);
 		btnQuatro.setBounds(10,220,52,30);
@@ -206,16 +231,51 @@ public class Calculadora extends JFrame{ //extends serve pra acessar coisas de o
 		
 		paine.add(btnUmX);
 		btnUmX.setBounds(230,220,52,30);
+		btnUmX.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor1=Double.parseDouble(result.getText());
+				sinal="fracao";
+				result.setText("0");
+				
+			}
+		});
 		
 		paine.add(btnUm);
 		btnUm.setBounds(10,260,52,30);
+		btnUm.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				if (result.getText().equals("0")) {
+					result.setText("1");
+			}else {
+				result.setText(result.getText()+"1");
+			}
+			}	
+		});
 		
 		
 		paine.add(btnDois);
 		btnDois.setBounds(65,260,52,30);
+		btnDois.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				if (result.getText().equals("0")) {
+					result.setText("2");
+			}else {
+				result.setText(result.getText()+"2");
+			}
+			}	
+		});
 		
 		paine.add(btnTres);
 		btnTres.setBounds(120,260,52,30);
+		btnTres.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				if (result.getText().equals("0")) {
+					result.setText("3");
+			}else {
+				result.setText(result.getText()+"3");
+			}
+			}	
+		});
 		
 		paine.add(btnSubtrair);
 		btnSubtrair.setBounds(175,260,52,30);
@@ -229,6 +289,15 @@ public class Calculadora extends JFrame{ //extends serve pra acessar coisas de o
 		
 		paine.add(btnZero);
 		btnZero.setBounds(10,300,104,30);
+		btnZero.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				if (result.getText().equals("0")) {
+					result.setText("0");
+			}else {
+				result.setText(result.getText()+"0");
+			}
+			}	
+		});
 		
 		paine.add(btnVirgula);
 		btnVirgula.setBounds(120,300,52,30);
@@ -263,8 +332,15 @@ public class Calculadora extends JFrame{ //extends serve pra acessar coisas de o
 			else if(sinal.equals("divisao")) {
 				result.setText(mat.divisao(valor1, valor2)+"");
 			}
-			
-			
+			else if(sinal.equals("porcento")) {
+				result.setText(mat.porcento(valor1,valor2)+"");
+			}
+			else if (sinal.equals("raiz")) {
+				result.setText(mat.raiz(valor1)+"");
+			}
+			else if (sinal.equals("facao")) {
+				result.setText(mat.fracao(valor1)+"");
+			}
 		}
 	});
 			
