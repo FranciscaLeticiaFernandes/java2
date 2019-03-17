@@ -38,4 +38,11 @@ public class Funcoes {
 		 resultado=1/a;
 		 return resultado;
 	 }
+	 
+	 public double negativo (double a) {
+	    double resultado;
+	    resultado= a*(-1);
+	    return resultado;
+	    }
 }
+   

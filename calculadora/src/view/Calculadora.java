@@ -92,9 +92,20 @@ public class Calculadora extends JFrame{ //extends serve pra acessar coisas de o
 		
 		paine.add(btnBackspace);
 		btnBackspace.setBounds(10,140,52,30);
+		btnBackspace.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			 result.setText(result.getText().substring(0, result.getText().length() - 1)); 
+			}
+		});
 		
 		paine.add(btnCE);
 		btnCE.setBounds(65,140,52,30);
+		btnCE.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor2=0;
+				result.setText("0");
+			}
+		});
 		
 		paine.add(btnC);
 		btnC.setBounds(120,140,52,30);
@@ -109,7 +120,13 @@ public class Calculadora extends JFrame{ //extends serve pra acessar coisas de o
 		
 		paine.add(btnMaisOuMenos);
 		btnMaisOuMenos.setBounds(175,140,52,30);
-		//btnMaisOuMenos.addActionListener(new ActionLiestener());
+		btnMaisOuMenos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				valor1=Double.parseDouble(result.getText());
+				sinal="negativo";
+				result.setText("0");
+			}
+		});
 		
 		paine.add(btnRQuad);
 		btnRQuad.setBounds(230,140,52,30);
@@ -144,8 +161,6 @@ public class Calculadora extends JFrame{ //extends serve pra acessar coisas de o
 				}
 			}
 		});
-		
-		
 		
 		paine.add(btnNove);
 		btnNove.setBounds(120,180,52,30);
@@ -301,7 +316,16 @@ public class Calculadora extends JFrame{ //extends serve pra acessar coisas de o
 		
 		paine.add(btnVirgula);
 		btnVirgula.setBounds(120,300,52,30);
-		
+		btnVirgula.addActionListener(new ActionListener() {
+			public void actionPerformed (ActionEvent e) {
+				if (result.getText().equals("")) {
+					result.setText("0.");
+			}else {
+				result.setText(result.getText()+".");
+			}
+			}	
+		});
+	
 		paine.add(btnSomar);
 		btnSomar.setBounds(175,300,52,30);
 		btnSomar.addActionListener(new ActionListener() {
@@ -340,6 +364,9 @@ public class Calculadora extends JFrame{ //extends serve pra acessar coisas de o
 			}
 			else if (sinal.equals("fracao")) {
 				result.setText(mat.fracao(valor1)+"");
+			}
+			else if(sinal.equals("negativo")) {
+				result.setText(mat.negativo(valor1)+"");
 			}
 		}
 	});
