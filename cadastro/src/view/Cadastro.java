@@ -4,10 +4,12 @@ import java.awt.Container;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.text.MaskFormatter;
 
 public class Cadastro extends JFrame{
 	
@@ -51,7 +53,20 @@ public class Cadastro extends JFrame{
 	JTextField cep = new JTextField();
 	JTextField cel = new JTextField();
 	JTextField cpf = new JTextField();
-	
+
+    //Máscaras
+			
+			JFormattedTextField rg1 =null;
+			JFormattedTextField cpf1=null;
+			JFormattedTextField cep1=null;
+			JFormattedTextField tel1=null;
+			JFormattedTextField cel1=null;
+			
+			MaskFormatter frg=null;
+			MaskFormatter fcpf=null;
+			MaskFormatter fcep=null;
+			MaskFormatter ftel=null;
+	        MaskFormatter fcel=null;
 	public Cadastro() {
 		
 		Container paine = this.getContentPane();
@@ -77,12 +92,25 @@ public class Cadastro extends JFrame{
 		paine.add(bairro);
 		bairro.setBounds(100, 140, 200, 20);
 		
+		
+		try { //add mascara antes de tudo!!!
+			 ftel= new MaskFormatter("(##)####-####"); //a mascara
+			 tel= new JFormattedTextField(ftel);
+		} catch (Exception ex) { //exibir o erro
+			ex.printStackTrace();
+		}
 		paine.add(Telefone);
 		Telefone.setBounds(20, 180, 160, 20);
 		paine.add(tel);
 		tel.setBounds(100, 180, 200, 20);
 		
 		
+		try {
+			frg = new MaskFormatter("##.###.###-A");
+			rg = new JFormattedTextField(frg);
+		}catch (Exception ex){
+			ex.printStackTrace();
+		}
 		paine.add(RG);
 		RG.setBounds(20, 220, 200, 20);
 		paine.add(rg);
@@ -138,16 +166,28 @@ public class Cadastro extends JFrame{
 		Estado.addItem("TO");
 		
 		// fim
-		
+		try {
+			fcep=new MaskFormatter("#####-###");
+			cep =new JFormattedTextField (fcep);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 		paine.add(CEP);
 		CEP.setBounds(400, 100, 50, 20);
 		paine.add(cep);
 		cep.setBounds(450, 100, 200, 20);
 		
+		try {
+			fcel=new MaskFormatter("(##)#####-####");
+			cel=new JFormattedTextField(fcel);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 		paine.add(Cel);
 		Cel.setBounds(400, 140, 50, 20);
 		paine.add(cel);
 		cel.setBounds(450, 140, 200, 20);
+		
 		
 		paine.add(CPF);
 		CPF.setBounds(400, 180, 50, 20);
