@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -67,7 +69,9 @@ public class Cadastro extends JFrame{
 			MaskFormatter fcep=null;
 			MaskFormatter ftel=null;
 	        MaskFormatter fcel=null;
-	public Cadastro() {
+	        
+	       model.Cadastro pessoa = new model.Cadastro();
+    public Cadastro() {
 		
 		Container paine = this.getContentPane();
 		
@@ -188,7 +192,12 @@ public class Cadastro extends JFrame{
 		paine.add(cel);
 		cel.setBounds(450, 140, 200, 20);
 		
-		
+		try {
+			fcpf=new MaskFormatter("###.###.###-##");
+			cpf=new JFormattedTextField(fcpf);
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
 		paine.add(CPF);
 		CPF.setBounds(400, 180, 50, 20);
 		paine.add(cpf);
@@ -197,6 +206,13 @@ public class Cadastro extends JFrame{
 		
 		paine.add(Salvar);
 		Salvar.setBounds(200, 270, 100, 20);
+		Salvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				pessoa.setNome(Nome.getText());
+				pessoa.setEndereco(Endereco.getText());
+				
+			}
+		});
 
 		paine.add(Imprimir);
 		Imprimir.setBounds(400, 270, 100, 20);
